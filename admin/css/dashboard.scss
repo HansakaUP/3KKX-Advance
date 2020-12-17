@@ -1,0 +1,242 @@
+$colors: (
+	unique: #0FFA00,
+    primary: #005dff,
+    primary-light: lighten(#005dff, 40%),
+    primary-dark: darken(#7095B2, 40%),
+    accent: #F3FCF0,
+    title: #006C88,
+    match: #151E11
+);
+
+$shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
+@font-face {
+	font-family: 'MicrosoftSansSerif';
+	src: url('../../inc/micross.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@function color($color-name) {
+    @return map-get($colors, $color-name);
+}
+
+$minMobile: 411px;
+$mobile: 768px;
+
+@mixin minMobile {
+    @media (max-width: #{$minMobile}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: MicrosoftSansSerif;
+    background: color(accent);
+    margin: 30px 50px;
+    line-height: 1.4;
+}
+
+.btn {
+    background: color(primary);
+    color: color(primary-light);
+    padding: 0.6rem 1.3rem;
+    text-decoration: none;
+    border: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 20px;
+
+    .main-nav {
+
+        ul {
+            display: grid;
+            grid-gap: 20px;
+            padding: 0;
+            list-style: none;
+            grid-template-columns: repeat(5, 1fr);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+
+            li {
+
+                a {
+                    background: color(primary);
+                    display: block;
+                    text-decoration: none;
+                    padding: 0.8rem;
+                    text-align: center;
+                    color: color(primary-light);
+                    text-transform: uppercase;
+                    font-size: 1.1rem;
+                    box-shadow: $shadow;
+
+                    i {
+                        margin-right: 8px;
+                    }
+
+                    &:hover {
+                        background: color(primary-dark);
+                        color: color(primary-light);
+                    }
+                }
+            }
+        }
+    }
+
+    .top-container {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-areas:
+        "showcase showcase top-box-a"
+        "showcase showcase top-box-b";
+
+        @include mobile {
+            grid-template-areas:
+                "showcase showcase"
+                "top-box-a top-box-b";
+        }
+
+        @include minMobile {
+            grid-template-areas:
+                "showcase"
+                "top-box-a"
+                "top-box-b";
+        }
+
+        .showcase {
+            grid-area: showcase;
+            min-height: 400px;
+            background: color(primary-dark);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+            box-shadow: $shadow;
+
+            h1 {
+                font-size: 4rem;
+                margin-bottom: 0;
+                color: color(primary-light);
+                letter-spacing: 2px;
+
+                @include mobile {
+                    font-size: 2.5rem;
+                }
+            }
+
+            p {
+                font-size: 1.3rem;
+                margin-top: 0;
+                color: color(primary-light);
+            }
+        }
+
+        .top-box {
+            background: color(primary-dark);
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            box-shadow: $shadow;
+            padding: 1.5rem;
+
+            h4 {
+                color: color(primary-light);
+            }
+
+            .count {
+                color: color(primary-light);
+                font-size: 3.5rem;
+            }
+        }
+
+        .top-box-a {
+            grid-area: top-box-a;
+        }
+        .top-box-b {
+            grid-area: top-box-b;
+        }
+    }
+
+    .boxes {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+        .box {
+            background: color(primary-dark);
+            text-align: center;
+            padding: 1.5rem 2rem;
+            box-shadow: $shadow;
+
+            i, h3, p {
+                color: color(primary-light);
+            }
+
+            i {
+                padding: 10px;
+            }
+        }
+    }
+
+    .info {
+        background: color(primary-dark);
+        display: grid;
+        grid-gap: 30px;
+        grid-template-columns: repeat(2, 1fr);
+        box-shadow: $shadow;
+        padding: 3rem;
+
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
+
+        div {
+
+            h2, p {
+                color: color(primary-light);
+            }
+        }
+
+        .btn {
+            display: block;
+            margin-top: 16px;
+            text-align: center;
+
+            @include mobile {
+                margin: auto;
+            }
+        }
+    }
+
+    footer {
+        background: color(primary-dark);
+        color: color(primary-light);
+        text-align: center;
+        padding: 1rem;
+    }
+}
+

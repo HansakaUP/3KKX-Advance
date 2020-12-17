@@ -1,0 +1,298 @@
+$colors: (
+    unique: #4E00FF,
+    primary: #005dff,
+    primary-light: lighten(#005dff, 40%),
+    primary-dark: darken(#7095B2, 40%),
+    accent: #F3FCF0,
+    title: #006C88,
+    match: #151E11
+);
+
+$shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+
+@font-face {
+	font-family: 'MicrosoftSansSerif';
+	src: url('../../inc/micross.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@function color($color-name) {
+    @return map-get($colors, $color-name);
+}
+
+$minMobile: 411px;
+$mobile: 768px;
+
+@mixin minMobile {
+    @media (max-width: #{$minMobile}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: MicrosoftSansSerif;
+    background: color(accent);
+    margin: 30px 50px;
+    line-height: 1.4;
+}
+
+.btn {
+    background: color(primary);
+    color: color(primary-light);
+    padding: 0.6rem 1.3rem;
+    text-decoration: none;
+    border: 0;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 20px;
+
+    .main-nav {
+
+        ul {
+            display: grid;
+            grid-gap: 20px;
+            padding: 0;
+            list-style: none;
+            grid-template-columns: repeat(5, 1fr);
+
+            @include mobile {
+                grid-template-columns: 1fr;
+            }
+
+            li {
+
+                a {
+                    background: color(primary);
+                    display: block;
+                    text-decoration: none;
+                    padding: 0.8rem;
+                    text-align: center;
+                    color: color(primary-light);
+                    text-transform: uppercase;
+                    font-size: 1.1rem;
+                    box-shadow: $shadow;
+
+                    i {
+                        margin-right: 8px;
+                    }
+
+                    &:hover {
+                        background: color(primary-dark);
+                        color: color(primary-light);
+                    }
+                }
+
+                &:first-child {
+
+                    a {
+                        background-color: color(primary-dark);
+                    }
+                }
+            }
+        }
+    }
+
+    .form-container {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-areas:
+            "form-title form-title"
+            "form-item-1 form-item-2"
+            "form-item-3 form-item-4"
+            "form-item-5 form-item-6"
+            "form-item-7 form-item-8"
+            "form-item-9 form-item-10"
+            "form-item-11 form-item-12"
+            "form-item-13 form-item-14"
+            "form-item-15 form-item-16"
+            "form-item-17 form-item-18"
+            "form-item-19 form-item-20"
+            "form-item-21 form-item-22";
+
+        @include mobile {
+            grid-template-areas:
+                "form-title"
+                "form-item-1"
+                "form-item-2"
+                "form-item-3"
+                "form-item-4"
+                "form-item-5"
+                "form-item-6"
+                "form-item-7"
+                "form-item-8"
+                "form-item-9"
+                "form-item-10"
+                "form-item-11"
+                "form-item-12"
+                "form-item-13"
+                "form-item-14"
+                "form-item-15"
+                "form-item-16"
+                "form-item-17"
+                "form-item-18"
+                "form-item-19"
+                "form-item-20"
+                "form-item-21"
+                "form-item-22";
+        }
+
+        .form-title {
+            grid-area: form-title;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            justify-content: center;
+
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 0;
+                color: color(primary-dark);
+                letter-spacing: 2px;
+
+                @include mobile {
+                    font-size: 2.5rem;
+                }
+            }
+
+            p {
+                font-size: 0.9rem;
+                margin-top: 0;
+                color: color(primary-dark);
+            }
+        }
+
+        .form-item {
+            grid-area: form-item;
+            display: grid;
+            align-items: center;
+            justify-items: space-around;
+            padding: 1.5rem;
+
+            label {
+                color: color(primary-dark);
+                padding-bottom: 0.6rem;
+                font-size: 1.2rem;
+            }
+
+            input, textarea, select, button {
+                color: color(primary-dark);
+                padding: 0.6rem;
+                font-size: 1.2rem;
+                border: 0;
+                border: 2px solid color(primary-dark);
+            }
+
+            button {
+                background-color: color(unique);
+                border: 2px solid color(unique);
+                color: color(primary-light);
+                font-weight: 900;
+                letter-spacing: 1px;
+                cursor: pointer;
+                transition: 0.4s;
+
+                &:hover {
+                    border: 2px solid color(primary-dark);
+                    background-color: color(primary-dark);
+                }
+            }
+
+            input[type=file] {
+                border: 0;
+            }
+        }
+
+        .form-item-1 {
+            grid-area: form-item-1;
+        }
+        .form-item-2 {
+            grid-area: form-item-2;
+        }
+        .form-item-3 {
+            grid-area: form-item-3;
+        }
+        .form-item-4 {
+            grid-area: form-item-4;
+        }
+        .form-item-5 {
+            grid-area: form-item-5;
+        }
+        .form-item-6 {
+            grid-area: form-item-6;
+        }
+        .form-item-7 {
+            grid-area: form-item-7;
+        }
+        .form-item-8 {
+            grid-area: form-item-8;
+        }
+        .form-item-9 {
+            grid-area: form-item-9;
+        }
+        .form-item-10 {
+            grid-area: form-item-10;
+        }
+        .form-item-11 {
+            grid-area: form-item-11;
+        }
+        .form-item-12 {
+            grid-area: form-item-12;
+        }
+        .form-item-13 {
+            grid-area: form-item-13;
+        }
+        .form-item-14 {
+            grid-area: form-item-14;
+        }
+        .form-item-15 {
+            grid-area: form-item-15;
+        }
+        .form-item-16 {
+            grid-area: form-item-16;
+        }
+        .form-item-17 {
+            grid-area: form-item-17;
+        }
+        .form-item-18 {
+            grid-area: form-item-18;
+        }
+        .form-item-19 {
+            grid-area: form-item-19;
+        }
+        .form-item-20 {
+            grid-area: form-item-20;
+        }
+        .form-item-21 {
+            grid-area: form-item-21;
+        }
+        .form-item-22 {
+            grid-area: form-item-22;
+        }
+    }
+
+    footer {
+        background: color(primary-dark);
+        color: color(primary-light);
+        text-align: center;
+        padding: 1rem;
+    }
+}
+
